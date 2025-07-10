@@ -1,0 +1,15 @@
+<div class="container">
+  <h2>Conversor de PDF para Word</h2>
+
+  <div class="file-input-container">
+    <input type="file" (change)="onFileSelected($event)" accept=".pdf" />
+    <span *ngIf="pdfSelecionado">Arquivo selecionado: {{pdfSelecionado.name}}</span>
+  </div>
+
+  <button (click)="enviarArquivo()" [disabled]="!pdfSelecionado || carregando">
+    {{carregando ? 'Convertendo...' : 'Converter'}}
+  </button>
+
+  <p *ngIf="carregando">⏳ Processando...</p>
+  <p *ngIf="mensagem" [ngClass]="{'error': erro, 'success': !erro}">{{mensagem}}</p>
+</div>
